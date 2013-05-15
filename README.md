@@ -9,5 +9,5 @@ page = 'url'		// page URL you wish to get the count for
 
 Usage:
 
-{exp:facebook_count:likes page="url"} outputs 4,234
-{exp:facebook_count:shares page="url"} outputs 164
+	{exp:facebook_count:likes page="url"} outputs 4,234
+	{exp:facebook_count:shares page="url"} outputs 164
