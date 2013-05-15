@@ -13,7 +13,7 @@ class Facebook_count {
 
 	private $graph_url = 'http://graph.facebook.com/';
 
-	function __construct()
+	public function __construct()
 	{
 		$this->EE =& get_instance();
 
@@ -69,7 +69,7 @@ class Facebook_count {
 		return json_decode($raw);
 	}
 
-	function usage()
+	public static function usage()
 	{
 		ob_start();
 ?>
