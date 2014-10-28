@@ -1,8 +1,8 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
 $plugin_info = array (
 	'pi_name' => 'Facebook Count',
-	'pi_version' => '1.0',
+	'pi_version' => '1.0.0',
 	'pi_author' => 'Michael Leigeber',
 	'pi_author_url' => 'http://www.caddis.co',
 	'pi_description' => 'Return Facebook page like or share count.',
@@ -20,8 +20,7 @@ class Facebook_count {
 		// Get target page
 		$this->page = $this->EE->TMPL->fetch_param('page');
 
-		if (! $this->page)
-		{
+		if (! $this->page) {
 			return 0;
 		}
 	}
@@ -32,13 +31,12 @@ class Facebook_count {
 
 		$data = $this->getData();
 
-		if (isset($data->likes))
-		{
+		if (isset($data->likes)) {
 			$likes = number_format($data->likes);
 		}
 
 		return $likes;
-    }
+	}
 
 	public function shares()
 	{
@@ -46,8 +44,7 @@ class Facebook_count {
 
 		$data = $this->getData();
 
-		if (isset($data->shares))
-		{
+		if (isset($data->shares)) {
 			$shares = number_format($data->shares);
 		}
 
@@ -83,7 +80,7 @@ Usage:
 {exp:facebook_count:shares page="url"} outputs 164
 <?php
 		$buffer = ob_get_contents();
-	
+
 		ob_end_clean();
 
 		return $buffer;
