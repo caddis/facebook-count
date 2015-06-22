@@ -2,7 +2,7 @@
 
 $plugin_info = array (
 	'pi_name' => 'Facebook Count',
-	'pi_version' => '1.1.0',
+	'pi_version' => '1.1.1',
 	'pi_author' => 'Caddis',
 	'pi_author_url' => 'https://www.caddis.co',
 	'pi_description' => 'Return Facebook page like or share count.',
@@ -50,6 +50,10 @@ class Facebook_count {
 
 	private function getData()
 	{
+		if (! preg_match("#https?://#i", $this->page)) {
+			$this->page = 'https://www.facebook.com/' . $this->page;
+		} 
+		 
 		$url = $this->graph_url . urlencode($this->page);
 		$ch = curl_init($url);
 
