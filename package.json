@@ -2,8 +2,10 @@
 	"schema_version": "1.0",
 	"name" : "facebook_count",
 	"label": "Facebook Count",
-	"version": "1.0.0",
-	"types": ["plugin"],
+	"version": "1.1.0",
+	"types": [
+		"plugin"
+	],
 	"paths": {
 		"system": [
 			"system/expressionengine/third_party/facebook_count"

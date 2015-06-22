@@ -2,23 +2,20 @@
 
 $plugin_info = array (
 	'pi_name' => 'Facebook Count',
-	'pi_version' => '1.0.0',
-	'pi_author' => 'Michael Leigeber',
-	'pi_author_url' => 'http://www.caddis.co',
+	'pi_version' => '1.1.0',
+	'pi_author' => 'Caddis',
+	'pi_author_url' => 'https://www.caddis.co',
 	'pi_description' => 'Return Facebook page like or share count.',
 	'pi_usage' => Facebook_count::usage()
 );
 
 class Facebook_count {
 
-	private $graph_url = 'http://graph.facebook.com/';
+	private $graph_url = 'https://api.facebook.com/method/links.getStats?format=json&urls=';
 
 	public function __construct()
 	{
-		$this->EE =& get_instance();
-
-		// Get target page
-		$this->page = $this->EE->TMPL->fetch_param('page');
+		$this->page = ee()->TMPL->fetch_param('page');
 
 		if (! $this->page) {
 			return 0;
@@ -31,8 +28,8 @@ class Facebook_count {
 
 		$data = $this->getData();
 
-		if (isset($data->likes)) {
-			$likes = number_format($data->likes);
+		if (isset($data->like_count)) {
+			$likes = number_format($data->like_count);
 		}
 
 		return $likes;
@@ -44,8 +41,8 @@ class Facebook_count {
 
 		$data = $this->getData();
 
-		if (isset($data->shares)) {
-			$shares = number_format($data->shares);
+		if (isset($data->share_count)) {
+			$shares = number_format($data->share_count);
 		}
 
 		return $shares;
@@ -54,16 +51,22 @@ class Facebook_count {
 	private function getData()
 	{
 		$url = $this->graph_url . urlencode($this->page);
-
 		$ch = curl_init($url);
 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
 		$raw = curl_exec($ch);
 
 		curl_close($ch);
 
-		return json_decode($raw);
+		$response = json_decode($raw);
+
+		if (is_array($response)) {
+			return $response[0];
+		}
+
+		return array();
 	}
 
 	public static function usage()
@@ -72,7 +75,7 @@ class Facebook_count {
 ?>
 Parameters:
 
-page = 'url'		// page URL you wish to get the count for
+page = 'url' // page URL you wish to get the count for
 
 Usage:
 
