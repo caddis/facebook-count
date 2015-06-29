@@ -52,7 +52,7 @@ class Facebook_count
 			$this->page = 'https://www.facebook.com/' . $this->page;
 		}
 
-		$url = $this->$graphUrl . urlencode($this->page);
+		$url = $this->graphUrl . urlencode($this->page);
 		$ch = curl_init($url);
 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
