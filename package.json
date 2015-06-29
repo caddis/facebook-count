@@ -2,7 +2,7 @@
 	"schema_version": "1.0",
 	"name" : "facebook_count",
 	"label": "Facebook Count",
-	"version": "1.1.0",
+	"version": "1.1.2",
 	"types": [
 		"plugin"
 	],

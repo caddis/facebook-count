@@ -1,15 +1,15 @@
-# Facebook Count 1.1.0
+# Facebook Count 1.1.2
 
-Return Facebook page like or share count.
+Return like or share count for a URL or Facebook username.
 
 ## Parameters
 
-page = 'url' // page URL you wish to get the count for
+page = 'url' // page URL or facebook username
 
 ## Usage
 
-	{exp:facebook_count:likes page="url"} outputs 4,234
-	{exp:facebook_count:shares page="url"} outputs 164
+	{exp:facebook_count:likes page="https://www.example.com"} outputs 4,234
+	{exp:facebook_count:shares page="https://www.facebook.com/username"} outputs 164
 
 ## License
 
